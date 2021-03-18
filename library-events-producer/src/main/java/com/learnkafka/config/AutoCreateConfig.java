@@ -23,5 +23,4 @@ public class AutoCreateConfig {
                 .replicas(3)
                 .build();
     }
-
 }

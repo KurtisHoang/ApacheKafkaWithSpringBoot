@@ -1,0 +1,7 @@
+HTTP/1.1 405 
+Allow: POST
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Thu, 18 Mar 2021 22:43:04 GMT
+
+{"timestamp":"2021-03-18T22:43:04.215+00:00","status":405,"error":"Method Not Allowed","message":"","path":"/v1/libraryevent"}
