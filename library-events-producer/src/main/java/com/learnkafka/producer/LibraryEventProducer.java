@@ -52,7 +52,7 @@ public class LibraryEventProducer {
     }
 
     //approach 2 send LibraryEvents
-    public void sendLibraryEvent_Approach2(LibraryEvent libraryEvent) throws JsonProcessingException {
+    public ListenableFuture<SendResult<Integer,String>> sendLibraryEvent_Approach2(LibraryEvent libraryEvent) throws JsonProcessingException {
 
         Integer key = libraryEvent.getLibraryEventId();
         String value = objectMapper.writeValueAsString(libraryEvent); //convert libraryEvent to string
@@ -71,6 +71,8 @@ public class LibraryEventProducer {
                 handleSuccess(key, value, result);
             }
         });
+
+        return listenableFuture;
     }
 
     private ProducerRecord<Integer, String> buildProducerRecord(Integer key, String value, String topic) {
