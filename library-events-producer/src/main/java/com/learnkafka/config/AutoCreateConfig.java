@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 //Admin auto create a topic
-@Configuration
+@Configuration //declares one or more @Bean method
 @Profile("local")
 public class AutoCreateConfig {
 
