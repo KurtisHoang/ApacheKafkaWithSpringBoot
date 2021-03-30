@@ -1,8 +1,8 @@
-# kafka-for-developers-using-spring-boot
+# Spring boot Kafka learning project Description
+
+This is a learning project taken form the udemy course by Dilip Sundarraj. [Apache-Kafka-for-developers-using-Springboot](https://www.udemy.com/course/apache-kafka-for-developers-using-springboot/)
 
 This repository has the complete code related to kafka producers/consumers using spring boot.
-
-
 
 - [Setup-Kafka](https://github.com/KurtisHoang/ApacheKafkaWithSpringBoot/blob/master/SetUpKafka.md)
 
