@@ -149,11 +149,11 @@ public class LibraryEventsConsumerIntegrationTest {
     }
 
     @Test
-    void publishUpdateLibraryEvent_LibraryEventIdIsNull() throws InterruptedException, JsonProcessingException {
+    void publishUpdateLibraryEvent_LibraryEventIdIsNull() throws InterruptedException, JsonProcessingException, ExecutionException {
         //given
         Integer libraryEventId = null;
         String json = "{\"libraryEventId\":" + libraryEventId + ",\"libraryEventType\":\"UPDATE\",\"book\":{\"bookId\":456,\"bookName\":\"Kafka Using Spring Boot\",\"bookAuthor\":\"Dilip\"}}";
-        kafkaTemplate.sendDefault(null, json);
+        kafkaTemplate.sendDefault(null, json).get();
 
         //when
         CountDownLatch latch = new CountDownLatch(1);
@@ -166,19 +166,18 @@ public class LibraryEventsConsumerIntegrationTest {
     }
 
     @Test
-    void publishUpdateLibraryEvent_LibraryEventIdIs000() throws InterruptedException, JsonProcessingException {
+    void publishUpdateLibraryEvent_LibraryEventIdIs000() throws InterruptedException, JsonProcessingException, ExecutionException {
         //given
         Integer libraryEventId = 000;
         String json = "{\"libraryEventId\":" + libraryEventId + ",\"libraryEventType\":\"UPDATE\",\"book\":{\"bookId\":456,\"bookName\":\"Kafka Using Spring Boot\",\"bookAuthor\":\"Dilip\"}}";
-        kafkaTemplate.sendDefault(null, json);
-
+        kafkaTemplate.sendDefault(libraryEventId, json).get();
         //when
         CountDownLatch latch = new CountDownLatch(1);
         latch.await(3, TimeUnit.SECONDS);
 
-        //then
-        verify(libraryEventsConsumerSpy, atLeast(1)).onMessage(isA(ConsumerRecord.class));
-        verify(libraryEventsServiceSpy, atLeast(1)).processLibraryEvent(isA(ConsumerRecord.class));
 
+        //verify(libraryEventsConsumerSpy, atLeast(1)).onMessage(isA(ConsumerRecord.class));
+        verify(libraryEventsServiceSpy, atLeast(1 )).processLibraryEvent(isA(ConsumerRecord.class));
+        verify(libraryEventsServiceSpy, atLeast(1 )).handleRecovery(isA(ConsumerRecord.class));
     }
 }

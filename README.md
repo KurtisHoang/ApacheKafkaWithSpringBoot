@@ -1,12 +1,15 @@
-### ApacheKafkaWithSpringBoot
+# kafka-for-developers-using-spring-boot
 
-This is a learning project that uses Spring Boot with Apache Kafka <br/>
-Learning from an online programming course by Dilip Sundarraj
+This repository has the complete code related to kafka producers/consumers using spring boot.
 
-### Setting Up Kafka
 
-* Start up the Zookeeper.
-./zookeeper-server-start.sh ../config/zookeeper.properties
 
-* Start up Kafka Broker
-./kafka-server-start.sh ../config/server.properties
+- [Setup-Kafka](https://github.com/KurtisHoang/ApacheKafkaWithSpringBoot/blob/master/SetUpKafka.md)
+
+## Securing your Kafka Cluster using SSL
+
+- [Kafka SSL SetUp](https://github.com/KurtisHoang/ApacheKafkaWithSpringBoot/blob/master/Kafka_Security.md)
+
+## H2 Database
+
+- Access the h2 database in the following link - http://localhost:8081/h2-console
